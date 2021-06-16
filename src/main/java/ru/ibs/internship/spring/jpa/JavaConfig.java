@@ -1,6 +1,5 @@
 package ru.ibs.internship.spring.jpa;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
@@ -16,21 +15,17 @@ import javax.sql.DataSource;
 @EnableJpaRepositories(basePackages = "ru.ibs.internship.spring.jpa.repositories")
 public class JavaConfig {
 
-    @Value("${dbUser}")
-    private String dbUser;
-
-    @Value("${dbPass}")
-    private String dbPass;
 
     @Bean
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName("com.mysql.cj.jbdc.Driver");
-        dataSource.setDriverClassName(dbUser);
-        dataSource.setPassword(dbPass);
-        dataSource.setUrl("jdbc:postgresql://localhost:8080/myBD");
+        dataSource.setDriverClassName("org.postgresql.Driver");
+        dataSource.setUsername("nancy");
+        dataSource.setPassword("supra");
+        dataSource.setUrl("jdbc:postgresql://localhost:8081/myBD");
         return dataSource;
     }
+
 
     @Bean
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
@@ -42,6 +37,7 @@ public class JavaConfig {
         factory.setDataSource(dataSource());
         return factory;
     }
+
 
     @Bean
     public PlatformTransactionManager transactionManager() {

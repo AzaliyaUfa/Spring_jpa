@@ -6,5 +6,5 @@ import ru.ibs.internship.spring.jpa.entity.Car;
 
 @Repository
 public interface CarRepository extends CrudRepository<Car, Long> {
-    Car findCarByMnfName(String mnfName);
+    //Car findCarByMnfName(String mnfName);
 }
